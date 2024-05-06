@@ -27,6 +27,6 @@
     "androidtv": "npx expo run:android",
     "tvos": "npx expo run:ios",
     "clean:androidtv": "cd android && ./gradlew clean && cd ..",
-		"clean:tvos": "cd ios && pod cache clean --all && rm -rf build && rm -rf Pods && cd .."
+    "clean:tvos": "cd ios && pod cache clean --all && rm -rf build && rm -rf Pods && cd .."
   }
 }
