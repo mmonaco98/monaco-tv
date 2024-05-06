@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.mmonaco.monacotv'
+    namespace 'com.anonymous.monacotv'
     defaultConfig {
-        applicationId 'com.mmonaco.monacotv'
+        applicationId 'com.anonymous.monacotv'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

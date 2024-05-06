@@ -20,10 +20,10 @@
     "name": "monaco-tv",
     "slug": "monaco-tv",
     "android": {
-      "package": "com.mmonaco.monacotv"
+      "package": "com.anonymous.monacotv"
     },
     "ios": {
-      "bundleIdentifier": "com.mmonaco.monacotv"
+      "bundleIdentifier": "com.anonymous.monacotv"
     }
   }
 }
