@@ -1,7 +1,9 @@
-import { Image, StyleSheet, View } from "react-native"
+import { Image, StyleSheet, View, Text } from "react-native"
 import { AppColors } from "../enums/colors"
 import { hScale, vScale } from "../helpers/sizeHelper"
 import { Flow }from "../components/Loaders/Loaders"
+import { useEffect } from "react"
+import { useStore } from "../stores/appStores"
 
 const style = StyleSheet.create({
     container: {
@@ -21,6 +23,8 @@ const style = StyleSheet.create({
 const logoUrl = require("../assets/images/logo.png")
 
 export const SplashPage = ():JSX.Element => {
+    const userName = useStore((state)=>state.userInfo)
+    
     return <>
         <View style={style.container}>
             <View style={{height:vScale(300)}}/>
@@ -28,6 +32,7 @@ export const SplashPage = ():JSX.Element => {
             <View style={{height:vScale(300)}}>
                 <Flow size={hScale(100)} colors={["#ff5726","#ff6c27","#ff8325"]} />
             </View>
+            <Text>Ciao {userName}!</Text>
         </View>
     </>
 }
