@@ -1,21 +1,15 @@
-import * as React from 'react'
-import { Animated, Easing, View } from 'react-native'
-import { SpinnerProps, defaultProps } from './helpers/SpinnerProps'
-import AnimationContainer from './helpers/AnimationContainer'
-import { stagger } from './helpers/utils'
+import * as React from "react";
+import { Animated, Easing, View } from "react-native";
+import { SpinnerProps, defaultProps } from "./helpers/SpinnerProps";
+import AnimationContainer from "./helpers/AnimationContainer";
+import { stagger } from "./helpers/utils";
 
 export class Flow extends React.Component<SpinnerProps> {
-  static defaultProps = defaultProps
+  static defaultProps = defaultProps;
 
   render() {
-    const {
-      size,
-      colors,
-      style,
-      animating,
-      hidesWhenStopped,
-      ...rest
-    } = this.props
+    const { size, colors, style, animating, hidesWhenStopped, ...rest } =
+      this.props;
 
     return (
       <AnimationContainer
@@ -36,8 +30,8 @@ export class Flow extends React.Component<SpinnerProps> {
               {
                 width: size,
                 height: size * 0.25,
-                justifyContent: 'space-between',
-                flexDirection: 'row',
+                justifyContent: "space-between",
+                flexDirection: "row",
                 opacity: !animating && hidesWhenStopped ? 0 : 1,
               },
               style,
@@ -66,6 +60,6 @@ export class Flow extends React.Component<SpinnerProps> {
           </View>
         )}
       </AnimationContainer>
-    )
+    );
   }
 }

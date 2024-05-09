@@ -9,22 +9,20 @@ import { useEffect } from "react";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-    const updateUser = useStore((state) => state.updateUserInfo);
+  const updateUser = useStore((state) => state.updateUserInfo);
 
-    useEffect(() => {
-        updateUser("Marco");
-    });
-    return (
-        <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName={RouteNames.SplashPage}
-                screenOptions={{ headerShown: false }}
-            >
-                <Stack.Screen
-                    name={RouteNames.SplashPage}
-                    component={SplashPage}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+  useEffect(() => {
+    updateUser("Marco");
+  });
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={RouteNames.SplashPage}
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name={RouteNames.SplashPage} component={SplashPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

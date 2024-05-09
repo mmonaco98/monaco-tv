@@ -1,3 +1,3 @@
 export const enum RouteNames {
-    SplashPage = "SplashPage"
+  SplashPage = "SplashPage",
 }
