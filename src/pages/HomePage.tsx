@@ -1,7 +1,7 @@
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { AppColors } from '../enums/colors';
-import { PosterCard } from '../components/Cards/PosterCard';
-import { VideoCard } from '../components/Cards/VideoCard';
+import { HomeData } from '../helpers/fakeData';
+import { Carousel } from '../components/Carousel/Carousel';
 
 const style = StyleSheet.create({
     container: {
@@ -11,41 +11,19 @@ const style = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: AppColors.background,
-        gap: 50,
     },
 });
-
-const data = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-];
 
 export const HomePage = (): JSX.Element => {
     return (
         <>
             <View style={style.container}>
                 <FlatList
-                    horizontal
-                    data={data}
-                    renderItem={() => {
-                        return <PosterCard />;
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    data={HomeData.sections}
+                    renderItem={({ item, index }) => {
+                        return <Carousel data={item.data} type={item.type} />;
                     }}
                 ></FlatList>
             </View>

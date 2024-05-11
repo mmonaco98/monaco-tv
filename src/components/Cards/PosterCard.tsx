@@ -2,6 +2,7 @@ import { StyleSheet, View, Image, Pressable } from 'react-native';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
+import { TMovie } from '../../types/movie';
 
 const style = StyleSheet.create({
     cardWrapper: {
@@ -27,7 +28,7 @@ const style = StyleSheet.create({
     },
 });
 
-export const PosterCard = (): JSX.Element => {
+export const PosterCard = ({ item }: { item: TMovie }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     return (
         <>
@@ -42,7 +43,7 @@ export const PosterCard = (): JSX.Element => {
                 <View style={[style.cardWrapper, focused && style.focused]}>
                     <View style={style.card}>
                         <Image
-                            source={{ uri: 'https://picsum.photos/236/300' }}
+                            source={{ uri: item.movie_image_url }}
                             style={style.img}
                         ></Image>
                     </View>
