@@ -4,6 +4,8 @@ import { hScale, vScale } from '../helpers/sizeHelper';
 import { Flow } from '../components/Loaders/Loaders';
 import { useEffect } from 'react';
 import { useStore } from '../stores/appStores';
+import { useNavigation } from '@react-navigation/native';
+import { RouteNames } from '../enums/navigation';
 
 const style = StyleSheet.create({
     container: {
@@ -23,6 +25,16 @@ const logoUrl = require('../assets/images/logo.png');
 
 export const SplashPage = (): JSX.Element => {
     const userName = useStore((state) => state.userInfo);
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: RouteNames.HomePage }],
+            });
+        }, 2000);
+    }, []);
 
     return (
         <>
