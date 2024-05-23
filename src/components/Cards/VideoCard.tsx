@@ -3,6 +3,7 @@ import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
 import { TMovie } from '../../types/movie';
+import { useStore } from '../../stores/appStores';
 
 const style = StyleSheet.create({
     cardWrapper: {
@@ -30,11 +31,13 @@ const style = StyleSheet.create({
 
 export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
+    const updateFocusedItem = useStore((state) => state.updateFocusedItem);
     return (
         <>
             <Pressable
                 onFocus={() => {
                     setFocused(true);
+                    updateFocusedItem(item);
                 }}
                 onBlur={() => {
                     setFocused(false);
