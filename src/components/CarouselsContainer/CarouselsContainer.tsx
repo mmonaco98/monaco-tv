@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     },
 });
 
-export const CarouselsContainer = (): JSX.Element => {
+export const CarouselsContainer = ({ navigation }): JSX.Element => {
     return (
         <>
             <View style={style.container}>
@@ -19,7 +19,13 @@ export const CarouselsContainer = (): JSX.Element => {
                     showsVerticalScrollIndicator={false}
                     data={HomeData.sections}
                     renderItem={({ item, index }) => {
-                        return <Carousel data={item.data} type={item.type} />;
+                        return (
+                            <Carousel
+                                data={item.data}
+                                type={item.type}
+                                navigation={navigation}
+                            />
+                        );
                     }}
                 ></FlatList>
             </View>

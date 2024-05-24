@@ -3,7 +3,9 @@ import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
 import { TMovie } from '../../types/movie';
+import { useNavigation } from '@react-navigation/native';
 import { useStore } from '../../stores/appStores';
+import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
     cardWrapper: {
@@ -29,8 +31,15 @@ const style = StyleSheet.create({
     },
 });
 
-export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
+export const VideoCard = ({
+    item,
+    navigation,
+}: {
+    item: TMovie;
+    navigation;
+}): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
+    const x = useNavigation();
     const updateFocusedItem = useStore((state) => state.updateFocusedItem);
     return (
         <>
@@ -41,6 +50,9 @@ export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
                 }}
                 onBlur={() => {
                     setFocused(false);
+                }}
+                onPress={() => {
+                    navigation.navigate(RouteNames.PlayerPage as never);
                 }}
             >
                 <View style={[style.cardWrapper, focused && style.focused]}>

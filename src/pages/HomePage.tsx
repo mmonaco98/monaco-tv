@@ -17,12 +17,12 @@ const style = StyleSheet.create({
     },
 });
 
-export const HomePage = (): JSX.Element => {
+export const HomePage = ({ navigation }): JSX.Element => {
     return (
         <>
             <View style={style.homePage}>
                 <MoviePreview />
-                <CarouselsContainer />
+                <CarouselsContainer navigation={navigation} />
             </View>
         </>
     );
