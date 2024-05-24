@@ -31,7 +31,7 @@ const style = StyleSheet.create({
 
 export const MoviePreview = (): JSX.Element => {
     const focusedItem = useStore((state) => state.focusedItem);
-
+    if (!focusedItem) return <View style={style.container} />;
     return (
         <>
             <View style={style.container}>
