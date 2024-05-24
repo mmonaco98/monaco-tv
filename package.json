@@ -11,6 +11,7 @@
     "react-native": "npm:react-native-tvos@^0.73.6-3",
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
+    "react-native-video": "^6.1.2",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
