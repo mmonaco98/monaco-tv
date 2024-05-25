@@ -1,8 +1,9 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View, Text } from 'react-native';
 import { CardTypes } from '../../enums/cards';
 import { PosterCard } from '../Cards/PosterCard';
 import { VideoCard } from '../Cards/VideoCard';
 import { TMovie } from '../../types/movie';
+import { AppColors } from '../../enums/colors';
 
 const style = StyleSheet.create({
     container: {},
@@ -18,6 +19,7 @@ export const Carousel = ({
     return (
         <>
             <View style={style.container}>
+                <Text style={{ color: AppColors.white }}>Titolo Carosello</Text>
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
