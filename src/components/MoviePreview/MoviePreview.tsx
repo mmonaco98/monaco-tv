@@ -3,6 +3,7 @@ import { useAppStore } from '../../stores/appStores';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { RadialGradient } from '../Basics/RadialGradient';
+import { Label } from '../Label/Label';
 
 const style = StyleSheet.create({
     container: {
@@ -21,6 +22,8 @@ const style = StyleSheet.create({
     textContainer: {
         height: '100%',
         width: '50%',
+        paddingLeft: hScale(180),
+        paddingTop: vScale(50),
     },
     title: {
         color: AppColors.white,
@@ -46,9 +49,16 @@ export const MoviePreview = (): JSX.Element => {
             <View style={style.container}>
                 <View style={style.textContainer}>
                     <Text style={style.title}>{focusedItem.movie_title}</Text>
-                    <Text style={style.releaseYear}>
-                        {focusedItem.movie_release_year}
-                    </Text>
+
+                    <Label
+                        size={{ width: hScale(60), height: vScale(25) }}
+                        bgColor={AppColors.orange}
+                        labelText={focusedItem.movie_release_year.toString()}
+                        textStyle={{
+                            color: AppColors.white,
+                            fontSize: vScale(16),
+                        }}
+                    />
                     <Text style={style.description}>
                         {focusedItem.movie_description}
                     </Text>
