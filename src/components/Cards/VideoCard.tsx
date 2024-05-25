@@ -32,7 +32,6 @@ const style = StyleSheet.create({
 
 export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
-    const navigation = useAppStore((state) => state.navigation);
     const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
 
     return (
@@ -44,9 +43,6 @@ export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
                 }}
                 onBlur={() => {
                     setFocused(false);
-                }}
-                onPress={() => {
-                    navigation.navigate(RouteNames.PlayerPage);
                 }}
             >
                 <View style={[style.cardWrapper, focused && style.focused]}>
