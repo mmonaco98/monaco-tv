@@ -2,6 +2,7 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 import { useAppStore } from '../../stores/appStores';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
+import { RadialGradient } from '../Basics/RadialGradient';
 
 const style = StyleSheet.create({
     container: {
@@ -29,6 +30,12 @@ const style = StyleSheet.create({
     description: {},
 });
 
+const colorList = [
+    { offset: '10%', color: AppColors.background, opacity: '0.4' },
+    { offset: '50%', color: AppColors.background, opacity: '0' },
+    { offset: '100%', color: AppColors.background, opacity: '1' },
+];
+
 export const MoviePreview = (): JSX.Element => {
     const focusedItem = useAppStore((state) => state.focusedItem);
 
@@ -49,8 +56,19 @@ export const MoviePreview = (): JSX.Element => {
                 <View style={style.imageContainer}>
                     <Image
                         src={focusedItem.movie_image_url}
-                        style={{ width: '100%', height: '100%' }}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                        }}
                         resizeMode="cover"
+                    />
+                    <RadialGradient
+                        cx="100%"
+                        cy="0%"
+                        rx="100%"
+                        ry="100%"
+                        colorList={colorList}
                     />
                 </View>
             </View>
