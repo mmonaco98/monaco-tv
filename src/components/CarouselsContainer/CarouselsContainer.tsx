@@ -1,6 +1,6 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import { Carousel } from '../Carousel/Carousel';
-import { HomeData } from '../../helpers/fakeData';
+import { HomeData } from '../../helpers/FakeData';
 import { AppColors } from '../../enums/colors';
 
 const style = StyleSheet.create({
@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     },
 });
 
-export const CarouselsContainer = ({ navigation }): JSX.Element => {
+export const CarouselsContainer = (): JSX.Element => {
     return (
         <>
             <View style={style.container}>
@@ -19,13 +19,7 @@ export const CarouselsContainer = ({ navigation }): JSX.Element => {
                     showsVerticalScrollIndicator={false}
                     data={HomeData.sections}
                     renderItem={({ item, index }) => {
-                        return (
-                            <Carousel
-                                data={item.data}
-                                type={item.type}
-                                navigation={navigation}
-                            />
-                        );
+                        return <Carousel data={item.data} type={item.type} />;
                     }}
                 ></FlatList>
             </View>

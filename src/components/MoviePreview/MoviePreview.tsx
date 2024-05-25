@@ -1,5 +1,5 @@
 import { StyleSheet, View, Image, Text } from 'react-native';
-import { useStore } from '../../stores/appStores';
+import { useAppStore } from '../../stores/appStores';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 
@@ -30,8 +30,10 @@ const style = StyleSheet.create({
 });
 
 export const MoviePreview = (): JSX.Element => {
-    const focusedItem = useStore((state) => state.focusedItem);
+    const focusedItem = useAppStore((state) => state.focusedItem);
+
     if (!focusedItem) return <View style={style.container} />;
+
     return (
         <>
             <View style={style.container}>

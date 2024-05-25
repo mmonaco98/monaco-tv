@@ -11,11 +11,9 @@ const style = StyleSheet.create({
 export const Carousel = ({
     data,
     type,
-    navigation,
 }: {
     data: TMovie[];
     type: CardTypes;
-    navigation: any;
 }): JSX.Element => {
     return (
         <>
@@ -32,10 +30,7 @@ export const Carousel = ({
                                     <PosterCard item={item} />
                                 )}
                                 {type == CardTypes.VideoCard && (
-                                    <VideoCard
-                                        item={item}
-                                        navigation={navigation}
-                                    />
+                                    <VideoCard item={item} />
                                 )}
                             </>
                         );

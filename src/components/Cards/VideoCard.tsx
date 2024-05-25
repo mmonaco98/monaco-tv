@@ -3,8 +3,7 @@ import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
 import { TMovie } from '../../types/movie';
-import { useNavigation } from '@react-navigation/native';
-import { useStore } from '../../stores/appStores';
+import { useAppStore } from '../../stores/appStores';
 import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
@@ -31,16 +30,11 @@ const style = StyleSheet.create({
     },
 });
 
-export const VideoCard = ({
-    item,
-    navigation,
-}: {
-    item: TMovie;
-    navigation;
-}): JSX.Element => {
+export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
-    const x = useNavigation();
-    const updateFocusedItem = useStore((state) => state.updateFocusedItem);
+    const navigation = useAppStore((state) => state.navigation);
+    const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
+
     return (
         <>
             <Pressable
@@ -52,7 +46,7 @@ export const VideoCard = ({
                     setFocused(false);
                 }}
                 onPress={() => {
-                    navigation.navigate(RouteNames.PlayerPage as never);
+                    navigation.navigate(RouteNames.PlayerPage);
                 }}
             >
                 <View style={[style.cardWrapper, focused && style.focused]}>
@@ -60,7 +54,7 @@ export const VideoCard = ({
                         <Image
                             source={{ uri: item.movie_image_url }}
                             style={style.img}
-                        ></Image>
+                        />
                     </View>
                 </View>
             </Pressable>
