@@ -12,7 +12,7 @@ const style = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: hScale(17),
+        borderRadius: hScale(15),
     },
     focused: {
         backgroundColor: AppColors.white,
@@ -23,8 +23,8 @@ const style = StyleSheet.create({
         borderRadius: hScale(10),
     },
     img: {
-        width: hScale(226),
-        height: hScale(340),
+        width: hScale(230),
+        height: hScale(344),
         borderRadius: hScale(10),
     },
 });
