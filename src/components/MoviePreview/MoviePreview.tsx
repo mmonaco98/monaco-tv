@@ -24,14 +24,18 @@ const style = StyleSheet.create({
         height: '100%',
         width: '50%',
         paddingLeft: hScale(180),
-        paddingTop: vScale(50),
+        paddingTop: vScale(70),
+        gap: vScale(20),
     },
     title: {
         color: AppColors.white,
-        fontSize: vScale(80),
+        fontSize: vScale(70),
     },
     releaseYear: {},
-    description: {},
+    description: {
+        color: AppColors.white60,
+        fontSize: vScale(25),
+    },
 });
 
 const colorList = [
@@ -60,18 +64,20 @@ export const MoviePreview = (): JSX.Element => {
         <>
             <View style={style.container}>
                 <View style={style.textContainer}>
-                    <Text style={style.title}>{focusedItem.movie_title}</Text>
+                    <Text style={style.title} numberOfLines={1}>
+                        {focusedItem.movie_title}
+                    </Text>
 
                     <Label
                         size={{ width: hScale(60), height: vScale(25) }}
-                        bgColor={AppColors.orange}
+                        bgColor={AppColors.orange80}
                         labelText={focusedItem.movie_release_year.toString()}
                         textStyle={{
                             color: AppColors.white,
                             fontSize: vScale(16),
                         }}
                     />
-                    <Text style={style.description}>
+                    <Text style={style.description} numberOfLines={4}>
                         {focusedItem.movie_description}
                     </Text>
                 </View>

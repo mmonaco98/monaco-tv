@@ -1,5 +1,17 @@
 export const enum AppColors {
+    background20 = '#14253533',
+    background40 = '#14253566',
+    background60 = '#14253599',
+    background80 = '#142535cc',
     background = '#142535',
-    white = '#ffffff',
+    orange20 = '#f0760533',
+    orange40 = '#f0760566',
+    orange60 = '#f0760599',
+    orange80 = '#f07605cc',
     orange = '#f07605',
+    white20 = '#ffffff33',
+    white40 = '#ffffff66',
+    white60 = '#ffffff99',
+    white80 = '#ffffffcc',
+    white = '#ffffff',
 }

@@ -12,7 +12,6 @@ const style = StyleSheet.create({
 
 export const CarouselsContainer = (): JSX.Element => {
     const homepage = useAppStore((state) => state.homepage);
-    console.log(homepage);
     return (
         <>
             <View style={style.container}>
