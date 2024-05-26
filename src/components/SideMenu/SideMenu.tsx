@@ -57,20 +57,16 @@ const menu: MenuVoice[] = [
     },
 ];
 
+const gradientColors: TColorList[] = [
+    { opacity: '1', color: AppColors.background, offset: '30%' },
+    { opacity: '.8', color: AppColors.background, offset: '10%' },
+    { opacity: '.4', color: AppColors.background, offset: '4%' },
+    { opacity: '0', color: AppColors.background, offset: '2%' },
+];
 export const SideMenu = (): JSX.Element => {
-    const addNextFocusRef = useAppStore((state) => state.addNextFocus);
-    const menuRef = useRef();
-    addNextFocusRef({ name: 'MENU', ref: menuRef });
-
-    const gradientColors: TColorList[] = [
-        { opacity: '1', color: AppColors.background, offset: '30%' },
-        { opacity: '.8', color: AppColors.background, offset: '10%' },
-        { opacity: '.4', color: AppColors.background, offset: '4%' },
-        { opacity: '0', color: AppColors.background, offset: '2%' },
-    ];
     return (
         <>
-            <View style={style.sideMenu} ref={menuRef}>
+            <View style={style.sideMenu}>
                 <LinearGradient
                     x1={'100%'}
                     x2={'0%'}
