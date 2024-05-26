@@ -40,7 +40,7 @@ const style = StyleSheet.create({
 
 const colorList = [
     { offset: '10%', color: AppColors.background, opacity: '0.4' },
-    { offset: '50%', color: AppColors.background, opacity: '0' },
+    { offset: '75%', color: AppColors.background, opacity: '0' },
     { offset: '100%', color: AppColors.background, opacity: '1' },
 ];
 
