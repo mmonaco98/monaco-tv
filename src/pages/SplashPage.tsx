@@ -21,32 +21,43 @@ const style = StyleSheet.create({
         width: hScale(300),
         height: vScale(300),
     },
+    text: {
+        color: AppColors.white80,
+        fontSize: vScale(50),
+    },
 });
 
 const logoUrl = require('../assets/images/logo.png');
 
 export const SplashPage = (): JSX.Element => {
-    const userName = useAppStore((state) => state.userInfo);
+    const user = useAppStore((state) => state.userInfo);
     const updateHomepage = useAppStore((state) => state.updateHomepage);
     const updateNavigation = useAppStore((state) => state.updateNavigation);
+
     const navigation: TNavigation = useNavigation();
 
     useEffect(() => {
         updateNavigation(navigation);
-        getHomepageByUserId(3)
-            .then((response) => {
-                updateHomepage(response);
-                setTimeout(() => {
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: RouteNames.HomePage }],
-                    });
-                }, 1000);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    });
+
+    useEffect(() => {
+        if (user) {
+            getHomepageByUserId(user.id)
+                .then((response) => {
+                    updateHomepage(response);
+                    setTimeout(() => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: RouteNames.HomePage }],
+                        });
+                    }, 1000);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, [user]);
+
     return (
         <>
             <View style={style.container}>
@@ -58,7 +69,12 @@ export const SplashPage = (): JSX.Element => {
                         colors={['#ff5726', '#ff6c27', '#ff8325']}
                     />
                 </View>
-                <Text>Ciao {userName}!</Text>
+
+                {user && (
+                    <View style={{ position: 'absolute', bottom: vScale(150) }}>
+                        <Text style={style.text}>Bentornato {user.name}!</Text>
+                    </View>
+                )}
             </View>
         </>
     );

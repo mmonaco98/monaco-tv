@@ -1,13 +1,14 @@
 import type { StateCreator } from 'zustand';
+import { TUser } from '../types/user';
 
 export interface TUserSlice {
-    userInfo: string | undefined;
-    updateUserInfo: (userInfo: string) => void;
+    userInfo: TUser | undefined;
+    updateUserInfo: (userInfo: TUser) => void;
     resetUserInfo: () => void;
 }
 
 export const createUserSlice: StateCreator<TUserSlice> = (set, get) => ({
     userInfo: undefined,
-    updateUserInfo: (userInfo: string) => set(() => ({ userInfo })),
+    updateUserInfo: (userInfo: TUser) => set(() => ({ userInfo })),
     resetUserInfo: () => set({ userInfo: undefined }),
 });

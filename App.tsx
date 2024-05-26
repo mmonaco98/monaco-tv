@@ -6,14 +6,19 @@ import { useAppStore } from './src/stores/appStores';
 import { useEffect } from 'react';
 import { HomePage } from './src/pages/HomePage';
 import { PlayerPage } from './src/pages/PlayerPage';
+import { TUser } from './src/types/user';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
     const updateUser = useAppStore((state) => state.updateUserInfo);
+    const user: TUser = {
+        name: 'Marco',
+        id: 4,
+    };
 
     useEffect(() => {
-        updateUser('Marco');
+        updateUser(user);
     });
     return (
         <NavigationContainer>
