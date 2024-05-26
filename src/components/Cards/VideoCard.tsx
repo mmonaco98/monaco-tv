@@ -4,7 +4,6 @@ import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
 import { TMovie } from '../../types/movie';
 import { useAppStore } from '../../stores/appStores';
-import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
     cardWrapper: {
