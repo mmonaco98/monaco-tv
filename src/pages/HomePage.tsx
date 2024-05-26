@@ -13,8 +13,8 @@ const style = StyleSheet.create({
     },
     menuWrapper: {
         position: 'absolute',
-        top: 0,
         left: 0,
+        bottom: 0,
         width: hScale(200),
         height: '100%',
         zIndex: 2,
