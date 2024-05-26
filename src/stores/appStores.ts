@@ -3,8 +3,12 @@ import { devtools, subscribeWithSelector } from 'zustand/middleware';
 import { createUserSlice, TUserSlice } from './userSlice';
 import { TNavigationSlice, createNavigationSlice } from './navigationSlice';
 import { TFocusedItemSlice, createFocusedItemSlice } from './focusedItemSlice';
+import { TNextFocusSlice, createNextFocusSlice } from './nextFocusSlice';
 
-export type TAppStore = TUserSlice & TNavigationSlice & TFocusedItemSlice;
+export type TAppStore = TUserSlice &
+    TNavigationSlice &
+    TFocusedItemSlice &
+    TNextFocusSlice;
 
 export const useAppStore = create<TAppStore>()(
     devtools(
@@ -12,6 +16,7 @@ export const useAppStore = create<TAppStore>()(
             ...createUserSlice(...a),
             ...createNavigationSlice(...a),
             ...createFocusedItemSlice(...a),
+            ...createNextFocusSlice(...a),
         }))
     )
 );
