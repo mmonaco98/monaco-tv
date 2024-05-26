@@ -4,34 +4,31 @@ import { PosterCard } from '../Cards/PosterCard';
 import { VideoCard } from '../Cards/VideoCard';
 import { TMovie } from '../../types/movie';
 import { AppColors } from '../../enums/colors';
+import { TSection } from '../../types/section';
 
 const style = StyleSheet.create({
     container: {},
 });
 
-export const Carousel = ({
-    data,
-    type,
-}: {
-    data: TMovie[];
-    type: CardTypes;
-}): JSX.Element => {
+export const Carousel = ({ section }: { section: TSection }): JSX.Element => {
     return (
         <>
             <View style={style.container}>
-                <Text style={{ color: AppColors.white }}>Titolo Carosello</Text>
+                <Text style={{ color: AppColors.white }}>
+                    {section.sectionTitle}
+                </Text>
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    data={data}
+                    data={section.movies}
                     renderItem={({ item, index }) => {
                         return (
                             <>
-                                {type == CardTypes.PosterCard && (
+                                {section.type == CardTypes.PosterCard && (
                                     <PosterCard item={item} />
                                 )}
-                                {type == CardTypes.VideoCard && (
+                                {section.type == CardTypes.VideoCard && (
                                     <VideoCard item={item} />
                                 )}
                             </>

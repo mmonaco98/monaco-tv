@@ -4,11 +4,13 @@ import { createUserSlice, TUserSlice } from './userSlice';
 import { TNavigationSlice, createNavigationSlice } from './navigationSlice';
 import { TFocusedItemSlice, createFocusedItemSlice } from './focusedItemSlice';
 import { TNextFocusSlice, createNextFocusSlice } from './nextFocusSlice';
+import { THomepageSlice, createHomepageSlice } from './homepageSlice';
 
 export type TAppStore = TUserSlice &
     TNavigationSlice &
     TFocusedItemSlice &
-    TNextFocusSlice;
+    TNextFocusSlice &
+    THomepageSlice;
 
 export const useAppStore = create<TAppStore>()(
     devtools(
@@ -17,6 +19,7 @@ export const useAppStore = create<TAppStore>()(
             ...createNavigationSlice(...a),
             ...createFocusedItemSlice(...a),
             ...createNextFocusSlice(...a),
+            ...createHomepageSlice(...a),
         }))
     )
 );

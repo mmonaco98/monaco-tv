@@ -47,7 +47,11 @@ export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
                 <View style={[style.cardWrapper, focused && style.focused]}>
                     <View style={style.card}>
                         <Image
-                            source={{ uri: item.movie_image_url }}
+                            source={{
+                                uri:
+                                    item.movie_image_url ??
+                                    'https://picsum.photos/418/238',
+                            }}
                             style={style.img}
                         />
                     </View>

@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RouteNames } from '../enums/navigation';
 import { useEffect } from 'react';
 import { TNavigation } from '../types/navigation';
+import { getHomepageByUserId } from '../utils/rest-api';
 
 const style = StyleSheet.create({
     container: {
@@ -26,17 +27,25 @@ const logoUrl = require('../assets/images/logo.png');
 
 export const SplashPage = (): JSX.Element => {
     const userName = useAppStore((state) => state.userInfo);
+    const updateHomepage = useAppStore((state) => state.updateHomepage);
     const updateNavigation = useAppStore((state) => state.updateNavigation);
     const navigation: TNavigation = useNavigation();
 
     useEffect(() => {
         updateNavigation(navigation);
-        setTimeout(() => {
-            navigation.reset({
-                index: 0,
-                routes: [{ name: RouteNames.HomePage }],
+        getHomepageByUserId(3)
+            .then((response) => {
+                updateHomepage(response);
+                setTimeout(() => {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: RouteNames.HomePage }],
+                    });
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log(err);
             });
-        }, 2000);
     }, []);
     return (
         <>

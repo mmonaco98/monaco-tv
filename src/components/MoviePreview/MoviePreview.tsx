@@ -1,9 +1,10 @@
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, ImageProps } from 'react-native';
 import { useAppStore } from '../../stores/appStores';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
 import { RadialGradient } from '../Basics/RadialGradient';
 import { Label } from '../Label/Label';
+import { useEffect, useState } from 'react';
 
 const style = StyleSheet.create({
     container: {
@@ -41,6 +42,17 @@ const colorList = [
 
 export const MoviePreview = (): JSX.Element => {
     const focusedItem = useAppStore((state) => state.focusedItem);
+    const [imageURL, setImageURL] = useState<ImageProps>();
+
+    useEffect(() => {
+        if (focusedItem) {
+            setImageURL(
+                focusedItem.movie_image_url
+                    ? { uri: focusedItem.movie_image_url }
+                    : require('./../../assets/images/placeholder.png')
+            );
+        }
+    }, [focusedItem]);
 
     if (!focusedItem) return <View style={style.container} />;
 
@@ -65,7 +77,7 @@ export const MoviePreview = (): JSX.Element => {
                 </View>
                 <View style={style.imageContainer}>
                     <Image
-                        src={focusedItem.movie_image_url}
+                        source={imageURL}
                         style={{
                             width: '100%',
                             height: '100%',
