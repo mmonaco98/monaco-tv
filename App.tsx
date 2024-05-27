@@ -7,19 +7,11 @@ import { useEffect } from 'react';
 import { HomePage } from './src/pages/HomePage';
 import { PlayerPage } from './src/pages/PlayerPage';
 import { TUser } from './src/types/user';
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-    const updateUser = useAppStore((state) => state.updateUserInfo);
-    const user: TUser = {
-        name: 'Marco',
-        id: 4,
-    };
-
-    useEffect(() => {
-        updateUser(user);
-    });
     return (
         <NavigationContainer>
             <Stack.Navigator

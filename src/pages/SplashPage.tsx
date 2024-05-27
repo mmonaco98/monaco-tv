@@ -5,9 +5,11 @@ import { Flow } from '../components/Loaders/Loaders';
 import { useAppStore } from '../stores/appStores';
 import { useNavigation } from '@react-navigation/native';
 import { RouteNames } from '../enums/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { TNavigation } from '../types/navigation';
 import { getHomepageByUserId } from '../utils/rest-api';
+import RNSecureStorage from 'rn-secure-storage';
+import { TUser } from '../types/user';
 
 const style = StyleSheet.create({
     container: {
@@ -30,13 +32,19 @@ const style = StyleSheet.create({
 const logoUrl = require('../assets/images/logo.png');
 
 export const SplashPage = (): JSX.Element => {
-    const user = useAppStore((state) => state.userInfo);
     const updateHomepage = useAppStore((state) => state.updateHomepage);
     const updateNavigation = useAppStore((state) => state.updateNavigation);
+    const updateUser = useAppStore((state) => state.updateUserInfo);
+    const [user, setUser] = useState<TUser>();
 
     const navigation: TNavigation = useNavigation();
 
     useEffect(() => {
+        // recupero info su User da storage nativo
+        RNSecureStorage.getItem('userInfo').then((res) => {
+            updateUser(JSON.parse(res));
+            setUser(JSON.parse(res));
+        });
         updateNavigation(navigation);
     });
 
