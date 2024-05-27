@@ -7,4 +7,5 @@ export interface TUser {
     gender: TGender;
     age: number;
     avatar: string;
+    password: string;
 }
