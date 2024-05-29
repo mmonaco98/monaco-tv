@@ -55,7 +55,9 @@ export const SplashPage = (): JSX.Element => {
                 if (!res) return undefined;
                 const locUser: TUser = await RNSecureStorage.getItem(
                     'userInfo'
-                ).then((res) => JSON.parse(res));
+                ).then((res) => {
+                    return JSON.parse(res);
+                });
                 setUser(locUser);
                 updateUser(locUser);
                 return locUser;

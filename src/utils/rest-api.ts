@@ -77,6 +77,27 @@ export const getUserById = async (id: number): Promise<TUser | undefined> => {
         });
 };
 
+export const loginUser = async (credentials: {
+    username: string;
+    password: string;
+}): Promise<TUser | undefined> => {
+    return await fetch('http://' + API_URL + `/user/login`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+    })
+        .then((response) => response.json())
+        .then((json) => {
+            return json.data;
+        })
+        .catch((err) => {
+            return undefined;
+        });
+};
+
 export const createUser = async (user: TUser): Promise<TUser | undefined> => {
     return await fetch('http://' + API_URL + `/user/insert`, {
         method: 'PUT',

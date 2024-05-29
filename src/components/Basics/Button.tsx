@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { AppColors } from '../../enums/colors';
 import { hScale, vScale } from '../../helpers/sizeHelper';
+import { Flow } from '../Loaders/Loaders';
 
 const style = StyleSheet.create({
     button: {
@@ -29,9 +30,14 @@ const style = StyleSheet.create({
 export interface ButtonProps {
     buttonText: string;
     onPress: () => void;
+    opInProg?: boolean;
 }
 
-export const Button = ({ buttonText, onPress }: ButtonProps): JSX.Element => {
+export const Button = ({
+    buttonText,
+    onPress,
+    opInProg = false,
+}: ButtonProps): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     return (
         <>
@@ -47,9 +53,22 @@ export const Button = ({ buttonText, onPress }: ButtonProps): JSX.Element => {
                 }}
             >
                 <View style={[style.button, focused && style.buttonFocused]}>
-                    <Text style={[style.text, focused && style.textFocused]}>
-                        {buttonText}
-                    </Text>
+                    {opInProg ? (
+                        <Flow
+                            size={hScale(50)}
+                            colors={[
+                                AppColors.black,
+                                AppColors.black,
+                                AppColors.black,
+                            ]}
+                        />
+                    ) : (
+                        <Text
+                            style={[style.text, focused && style.textFocused]}
+                        >
+                            {buttonText}
+                        </Text>
+                    )}
                 </View>
             </Pressable>
         </>
