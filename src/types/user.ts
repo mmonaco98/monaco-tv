@@ -8,4 +8,5 @@ export interface TUser {
     age: number;
     avatar: string;
     password: string;
+    username: string;
 }

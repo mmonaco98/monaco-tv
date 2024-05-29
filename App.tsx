@@ -4,6 +4,7 @@ import { RouteNames } from './src/enums/navigation';
 import { SplashPage } from './src/pages/SplashPage';
 import { HomePage } from './src/pages/HomePage';
 import { PlayerPage } from './src/pages/PlayerPage';
+import { LoginPage } from './src/pages/LoginPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,10 @@ export default function App() {
                 <Stack.Screen
                     name={RouteNames.PlayerPage}
                     component={PlayerPage}
+                />
+                <Stack.Screen
+                    name={RouteNames.LoginPage}
+                    component={LoginPage}
                 />
             </Stack.Navigator>
         </NavigationContainer>

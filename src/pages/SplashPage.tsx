@@ -142,7 +142,11 @@ export const SplashPage = (): JSX.Element => {
                             <View style={style.buttonContainer}>
                                 <Button
                                     buttonText={'Login'}
-                                    onPress={() => {}}
+                                    onPress={() => {
+                                        navigation.navigate(
+                                            RouteNames.LoginPage
+                                        );
+                                    }}
                                 />
                             </View>
                             <View style={style.buttonContainer}>
