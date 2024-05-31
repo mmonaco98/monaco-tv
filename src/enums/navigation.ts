@@ -7,4 +7,5 @@ export const enum RouteNames {
     DetailPage = 'DetailPage',
     LoginPage = 'LoginPage',
     SettingsPage = 'SettingsPage',
+    SignInPage = 'SignInPage',
 }

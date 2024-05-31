@@ -1,0 +1,18 @@
+export const AVATARS = [
+    'https://avatar.iran.liara.run/public/63',
+    'https://avatar.iran.liara.run/public/64',
+    'https://avatar.iran.liara.run/public/24',
+    'https://avatar.iran.liara.run/public/25',
+    'https://avatar.iran.liara.run/public/26',
+    'https://avatar.iran.liara.run/public/27',
+    'https://avatar.iran.liara.run/public/65',
+    'https://avatar.iran.liara.run/public/66',
+    'https://avatar.iran.liara.run/public/67',
+    'https://avatar.iran.liara.run/public/62',
+    'https://avatar.iran.liara.run/public/20',
+    'https://avatar.iran.liara.run/public/21',
+    'https://avatar.iran.liara.run/public/22',
+    'https://avatar.iran.liara.run/public/23',
+    'https://avatar.iran.liara.run/public/60',
+    'https://avatar.iran.liara.run/public/61',
+];

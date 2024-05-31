@@ -26,43 +26,14 @@ const style = StyleSheet.create({
 });
 
 export const HomePage = (): JSX.Element => {
-    const userInfo = useAppStore((state) => state.userInfo);
-    const updateHomepage = useAppStore((state) => state.updateHomepage);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    useEffect(() => {
-        getHomepageByUserId(userInfo.id)
-            .then((resp) => {
-                updateHomepage(resp);
-                setIsLoading(false);
-            })
-            .catch(() => {});
-    }, []);
     return (
         <>
             <View style={style.homePage}>
                 <View style={style.menuWrapper}>
                     <SideMenu />
                 </View>
-                {isLoading ? (
-                    <View
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Flow
-                            size={hScale(200)}
-                            colors={['#ff5726', '#ff6c27', '#ff8325']}
-                        />
-                    </View>
-                ) : (
-                    <>
-                        <MoviePreview />
-                        <CarouselsContainer />
-                    </>
-                )}
+                <MoviePreview />
+                <CarouselsContainer />
             </View>
         </>
     );

@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useAppStore } from '../stores/appStores';
 import { RouteNames } from '../enums/navigation';
 import { ACCESSIBLE, default as localStorage } from 'rn-secure-storage';
-import { loginUser } from '../utils/rest-api';
+import { getHomepageByUserId, loginUser } from '../utils/rest-api';
+import { TUser } from '../types/user';
 
 const style = StyleSheet.create({
     loginPage: {
@@ -77,6 +78,7 @@ const style = StyleSheet.create({
 export const LoginPage = (): JSX.Element => {
     const navigation = useAppStore((state) => state.navigation);
     const updateUserInfo = useAppStore((state) => state.updateUserInfo);
+    const updateHomepage = useAppStore((state) => state.updateHomepage);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isUsername, setIsUsername] = useState<boolean>(true);
@@ -134,10 +136,26 @@ export const LoginPage = (): JSX.Element => {
                     localStorage.setItem('userInfo', JSON.stringify(res), {
                         accessible: ACCESSIBLE.ALWAYS,
                     });
-                    navigation.navigate(RouteNames.HomePage);
+                    getHomepage(res);
                 })
                 .catch(() => {});
         }
+    };
+
+    const getHomepage = async (user: TUser) => {
+        getHomepageByUserId(user.id)
+            .then((response) => {
+                updateHomepage(response);
+                setTimeout(() => {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: RouteNames.HomePage }],
+                    });
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (

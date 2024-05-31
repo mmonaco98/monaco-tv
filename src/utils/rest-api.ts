@@ -44,7 +44,7 @@ export const getHomepageByUserId = async (id: number): Promise<TSection[]> => {
 
 export const createHomepage = async (id: number): Promise<void> => {
     return await fetch('http://' + API_URL + `/homepage/create?id=${id}`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ export const loginUser = async (credentials: {
 
 export const createUser = async (user: TUser): Promise<TUser | undefined> => {
     return await fetch('http://' + API_URL + `/user/insert`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',

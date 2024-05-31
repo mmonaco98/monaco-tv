@@ -90,7 +90,7 @@ export const SplashPage = (): JSX.Element => {
             } else {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 1000);
+                }, 2500);
             }
         });
     };
@@ -143,7 +143,7 @@ export const SplashPage = (): JSX.Element => {
                         <View style={style.buttonsWrapper}>
                             <View style={style.buttonContainer}>
                                 <Button
-                                    buttonText={'Login'}
+                                    buttonText={'Accedi'}
                                     onPress={() => {
                                         navigation.navigate(
                                             RouteNames.LoginPage
@@ -153,8 +153,12 @@ export const SplashPage = (): JSX.Element => {
                             </View>
                             <View style={style.buttonContainer}>
                                 <Button
-                                    buttonText={'Sign In'}
-                                    onPress={() => {}}
+                                    buttonText={'Registrati'}
+                                    onPress={() => {
+                                        navigation.navigate(
+                                            RouteNames.SignInPage
+                                        );
+                                    }}
                                 />
                             </View>
                         </View>

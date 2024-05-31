@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, View, Text } from 'react-native';
+import {
+    FlatList,
+    StyleSheet,
+    View,
+    Text,
+    TVFocusGuideView,
+} from 'react-native';
 import { CardTypes } from '../../enums/cards';
 import { PosterCard } from '../Cards/PosterCard';
 import { VideoCard } from '../Cards/VideoCard';
@@ -13,7 +19,11 @@ const style = StyleSheet.create({
 export const Carousel = ({ section }: { section: TSection }): JSX.Element => {
     return (
         <>
-            <View style={style.container}>
+            <TVFocusGuideView
+                style={style.container}
+                trapFocusLeft
+                trapFocusRight
+            >
                 <Text style={{ color: AppColors.white }}>
                     {section.sectionTitle}
                 </Text>
@@ -35,7 +45,7 @@ export const Carousel = ({ section }: { section: TSection }): JSX.Element => {
                         );
                     }}
                 />
-            </View>
+            </TVFocusGuideView>
         </>
     );
 };

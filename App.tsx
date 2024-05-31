@@ -5,6 +5,7 @@ import { SplashPage } from './src/pages/SplashPage';
 import { HomePage } from './src/pages/HomePage';
 import { PlayerPage } from './src/pages/PlayerPage';
 import { LoginPage } from './src/pages/LoginPage';
+import { SignInPage } from './src/pages/SignInPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,10 @@ export default function App() {
                 <Stack.Screen
                     name={RouteNames.LoginPage}
                     component={LoginPage}
+                />
+                <Stack.Screen
+                    name={RouteNames.SignInPage}
+                    component={SignInPage}
                 />
             </Stack.Navigator>
         </NavigationContainer>
