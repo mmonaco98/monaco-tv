@@ -76,7 +76,7 @@ export const MenuItem = ({ item }: { item: MenuVoice }): JSX.Element => {
                         source={source}
                     />
                 </View>
-                <View>{/* {focused && <Text>{item.buttonText}</Text>} */}</View>
+                {/* <View>{focused && <Text>{item.buttonText}</Text>}</View> */}
             </Pressable>
         </>
     );

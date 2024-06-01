@@ -7,8 +7,6 @@ import { MenuItem } from './MenuItem';
 import { RouteNames } from '../../enums/navigation';
 import { MenuVoice } from '../../types/menu';
 import { MenuItemType } from '../../enums/menu';
-import { useRef } from 'react';
-import { useAppStore } from '../../stores/appStores';
 
 const style = StyleSheet.create({
     sideMenu: {
@@ -30,6 +28,9 @@ const style = StyleSheet.create({
     listContainer: {
         height: vScale(700),
         width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: vScale(50),
     },
 });
 
@@ -77,21 +78,13 @@ export const SideMenu = (): JSX.Element => {
                     <View style={style.menuContainer}>
                         <View style={style.topBottomContainer}></View>
                         <View style={style.listContainer}>
-                            <FlatList
-                                showsHorizontalScrollIndicator={false}
-                                showsVerticalScrollIndicator={false}
-                                contentContainerStyle={{
-                                    height: '100%',
-                                    width: '100%',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    gap: vScale(50),
-                                }}
-                                data={menu}
-                                renderItem={({ item, index }) => {
-                                    return <MenuItem item={item} />;
-                                }}
-                            />
+                            {menu.map((elem, index) => {
+                                return (
+                                    <View key={'elem' + index}>
+                                        <MenuItem item={elem} />
+                                    </View>
+                                );
+                            })}
                         </View>
                         <View style={style.topBottomContainer}>
                             <Image
