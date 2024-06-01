@@ -4,6 +4,7 @@ import { AppColors } from '../../enums/colors';
 import { useState } from 'react';
 import { TMovie } from '../../types/movie';
 import { useAppStore } from '../../stores/appStores';
+import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
     cardWrapper: {
@@ -32,6 +33,7 @@ const style = StyleSheet.create({
 export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
+    const navigation = useAppStore((state) => state.navigation);
 
     return (
         <>
@@ -42,6 +44,14 @@ export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
                 }}
                 onBlur={() => {
                     setFocused(false);
+                }}
+                onPress={() => {
+                    navigation.navigate({
+                        name: RouteNames.DetailPage,
+                        params: {
+                            movie_id: item.movie_id,
+                        },
+                    });
                 }}
             >
                 <View style={[style.cardWrapper, focused && style.focused]}>

@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View, Text } from 'react-native';
 import { AppColors } from '../enums/colors';
 import { CarouselsContainer } from '../components/CarouselsContainer/CarouselsContainer';
-import { MoviePreview } from '../components/MoviePreview/MoviePreview';
+import { HomePreview } from '../components/HomePreview/HomePreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
 import { useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ export const HomePage = (): JSX.Element => {
                 <View style={style.menuWrapper}>
                     <SideMenu />
                 </View>
-                <MoviePreview />
+                <HomePreview />
                 <CarouselsContainer />
             </View>
         </>

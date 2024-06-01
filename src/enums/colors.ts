@@ -19,4 +19,7 @@ export const enum AppColors {
     black60 = '#00000099',
     black80 = '#000000cc',
     black = '#000000',
+    red = '#ff0000',
+    yellow = '#ffff00',
+    green = '#00ff00',
 }

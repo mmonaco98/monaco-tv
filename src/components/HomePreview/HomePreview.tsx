@@ -34,7 +34,7 @@ const style = StyleSheet.create({
     releaseYear: {},
     description: {
         color: AppColors.white60,
-        fontSize: vScale(25),
+        fontSize: vScale(30),
     },
 });
 
@@ -44,7 +44,7 @@ const colorList = [
     { offset: '100%', color: AppColors.background, opacity: '1' },
 ];
 
-export const MoviePreview = (): JSX.Element => {
+export const HomePreview = (): JSX.Element => {
     const focusedItem = useAppStore((state) => state.focusedItem);
     const [imageURL, setImageURL] = useState<ImageProps>();
 
@@ -69,12 +69,12 @@ export const MoviePreview = (): JSX.Element => {
                     </Text>
 
                     <Label
-                        size={{ width: hScale(60), height: vScale(25) }}
+                        size={{ width: hScale(70), height: vScale(30) }}
                         bgColor={AppColors.orange80}
                         labelText={focusedItem.movie_release_year.toString()}
                         textStyle={{
                             color: AppColors.white,
-                            fontSize: vScale(16),
+                            fontSize: vScale(20),
                         }}
                     />
                     <Text style={style.description} numberOfLines={4}>
