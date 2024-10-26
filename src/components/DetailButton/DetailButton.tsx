@@ -34,6 +34,7 @@ export const DetailButton = ({
 }: DetailButtonProps): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     const [source, setSource] = useState<ImageProps>();
+    const [labelWidth, setLabelWidth] = useState<number>(1);
 
     useEffect(() => {
         switch (icon) {
@@ -50,6 +51,7 @@ export const DetailButton = ({
                 setSource(require('./../../assets/icons/bookmark.png'));
                 break;
         }
+        setLabelWidth((250 * (text.length + 9)) / 30);
     }, [icon]);
     return (
         <>
@@ -60,13 +62,13 @@ export const DetailButton = ({
                         borderRadius: hScale(10),
                         position: 'absolute',
                         top: -vScale(50),
-                        width: hScale(250),
-                        left: -hScale(75),
+                        width: hScale(labelWidth),
+                        left: -hScale((labelWidth - 100) / 2),
                     }}
                 >
                     <Text
                         style={{
-                            paddingHorizontal: hScale(2),
+                            paddingHorizontal: hScale(5),
                             paddingVertical: vScale(10),
                             textAlign: 'center',
                             textTransform: 'uppercase',

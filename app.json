@@ -15,16 +15,15 @@
             "topShelfWide2x": "./assets/images/icon-4640x1440.png"
           }
         }
-      ],
-      "expo-video"
+      ]
     ],
-    "name": "monaco-tv",
-    "slug": "monaco-tv",
-    "android": {
-      "package": "com.anonymous.monacotv"
-    },
+    "name": "open-tv",
+    "slug": "open-tv",
     "ios": {
-      "bundleIdentifier": "com.anonymous.monacotv"
+      "bundleIdentifier": "com.anonymous.open-tv"
+    },
+    "android": {
+      "package": "com.anonymous.opentv"
     }
   }
 }

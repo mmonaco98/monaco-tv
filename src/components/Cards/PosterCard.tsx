@@ -29,7 +29,13 @@ const style = StyleSheet.create({
     },
 });
 
-export const PosterCard = ({ item }: { item: TMovie }): JSX.Element => {
+export const PosterCard = ({
+    item,
+    onFocus,
+}: {
+    item: TMovie;
+    onFocus?(): void;
+}): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
 
@@ -38,6 +44,7 @@ export const PosterCard = ({ item }: { item: TMovie }): JSX.Element => {
             <Pressable
                 onFocus={() => {
                     setFocused(true);
+                    onFocus();
                     updateFocusedItem(item);
                 }}
                 onBlur={() => {

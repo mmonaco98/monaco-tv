@@ -30,7 +30,13 @@ const style = StyleSheet.create({
     },
 });
 
-export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
+export const VideoCard = ({
+    item,
+    onFocus,
+}: {
+    item: TMovie;
+    onFocus?(): void;
+}): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
     const navigation = useAppStore((state) => state.navigation);
@@ -39,6 +45,7 @@ export const VideoCard = ({ item }: { item: TMovie }): JSX.Element => {
         <>
             <Pressable
                 onFocus={() => {
+                    onFocus();
                     setFocused(true);
                     updateFocusedItem(item);
                 }}

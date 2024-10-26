@@ -10,4 +10,8 @@ export interface TMovie {
     director_id: number;
     director_name: string;
     director_url: string;
+    movie_actors?: string;
+    movie_country?: string;
+    movie_genre?: string;
+    movie_language?: string;
 }
