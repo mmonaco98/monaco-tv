@@ -1,43 +1,44 @@
-import { useVideoPlayer, VideoView } from "expo-video";
-import { useEffect, useRef, useState } from "react";
-import { PixelRatio, StyleSheet, View, Button } from "react-native";
-import { hScale, vScale } from "../helpers/sizeHelper";
-import { AppColors } from "../enums/colors";
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useEffect, useRef, useState } from 'react';
+import { PixelRatio, StyleSheet, View, Button } from 'react-native';
+import { hScale, vScale } from '../helpers/sizeHelper';
+import { AppColors } from '../enums/colors';
 
 const videoSource =
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
 const style = StyleSheet.create({
     playerPage: {
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
         backgroundColor: AppColors.black,
     },
 });
 const styles = StyleSheet.create({
     playerPage: {
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
         backgroundColor: AppColors.black,
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     contentContainer: {
         flex: 1,
         padding: 10,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingHorizontal: 50,
     },
     video: {
-        width: hScale(1920),
-        height: vScale(1079),
+        width: '50%',
+        height: '50%',
+        zIndex: -1,
     },
     controlsContainer: {
         //padding: 10,
-        position: "absolute",
-        backgroundColor: "red",
+        /* position: 'absolute', */
+        backgroundColor: 'red',
     },
 });
 
@@ -51,7 +52,7 @@ export const PlayerPage = (): JSX.Element => {
 
     useEffect(() => {
         const subscription = player.addListener(
-            "playingChange",
+            'playingChange',
             (isPlaying) => {
                 setIsPlaying(isPlaying);
             }
@@ -69,13 +70,11 @@ export const PlayerPage = (): JSX.Element => {
                     ref={ref}
                     style={styles.video}
                     player={player}
-                    allowsFullscreen
-                    allowsPictureInPicture
                     nativeControls={false}
                 />
-                <View style={styles.controlsContainer}>
+                <View style={styles.controlsContainer} hasTVPreferredFocus>
                     <Button
-                        title={isPlaying ? "Pause" : "Play"}
+                        title={isPlaying ? 'Pause' : 'Play'}
                         onPress={() => {
                             if (isPlaying) {
                                 player.pause();

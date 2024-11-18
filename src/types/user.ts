@@ -10,3 +10,8 @@ export interface TUser {
     password: string;
     username: string;
 }
+
+export interface TCredentials {
+    username: string;
+    password: string;
+}

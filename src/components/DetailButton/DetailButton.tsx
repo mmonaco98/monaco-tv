@@ -4,6 +4,7 @@ import { AppColors } from '../../enums/colors';
 import { useEffect, useState } from 'react';
 import { ImageProps } from 'react-native';
 import { DetailButtonType } from '../../enums/detail';
+import { TMovieUserPref } from '../../types/movie';
 
 const style = StyleSheet.create({
     button: {
@@ -25,12 +26,14 @@ export interface DetailButtonProps {
     icon: string;
     text: string;
     onPress: () => void;
+    movieUserPref?: TMovieUserPref;
 }
 
 export const DetailButton = ({
     icon,
     text,
     onPress,
+    movieUserPref,
 }: DetailButtonProps): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
     const [source, setSource] = useState<ImageProps>();
@@ -92,6 +95,18 @@ export const DetailButton = ({
                     style={[
                         style.button,
                         focused && { backgroundColor: AppColors.white },
+                        icon === DetailButtonType.Like &&
+                            movieUserPref?.isLiked && {
+                                backgroundColor: AppColors.orange20,
+                            },
+                        icon === DetailButtonType.Dislike &&
+                            movieUserPref?.isDisliked && {
+                                backgroundColor: AppColors.orange20,
+                            },
+                        icon === DetailButtonType.Bookmark &&
+                            movieUserPref?.isFavourite && {
+                                backgroundColor: AppColors.orange20,
+                            },
                     ]}
                 >
                     <Image

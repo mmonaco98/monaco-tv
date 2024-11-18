@@ -14,4 +14,19 @@ export interface TMovie {
     movie_country?: string;
     movie_genre?: string;
     movie_language?: string;
+    movie_duration?: number;
+}
+
+export interface TUserMovie {
+    movie_id: number;
+    user_id: number;
+    isFavourite?: boolean;
+    message?: string;
+    data?: any;
+}
+
+export interface TMovieUserPref {
+    isFavourite: boolean;
+    isLiked: boolean;
+    isDisliked: boolean;
 }
