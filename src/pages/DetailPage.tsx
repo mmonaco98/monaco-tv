@@ -67,7 +67,6 @@ export const DetailPage = ({ route }: TDetailPageProps): JSX.Element => {
         let newMovieUserPref: TMovieUserPref = movieUserPref;
         switch (buttonType) {
             case DetailButtonType.Like:
-                console.log('A');
                 if (!movieUserPref.isLiked) {
                     await addLikedMovie(apiParams);
                     if (movieUserPref.isDisliked) {
@@ -87,9 +86,7 @@ export const DetailPage = ({ route }: TDetailPageProps): JSX.Element => {
                 break;
             case DetailButtonType.Dislike:
                 if (!movieUserPref.isDisliked) {
-                    await addDislikedMovie(apiParams).then((res) => {
-                        console.log(res);
-                    });
+                    await addDislikedMovie(apiParams);
                     if (movieUserPref.isLiked) {
                         await removeLikedMovie(apiParams);
                         newMovieUserPref = {

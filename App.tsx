@@ -7,6 +7,7 @@ import { PlayerPage } from './src/pages/PlayerPage';
 import { LoginPage } from './src/pages/LoginPage';
 import { SignInPage } from './src/pages/SignInPage';
 import { DetailPage } from './src/pages/DetailPage';
+import { SearchPage } from './src/pages/SearchPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,10 @@ export default function App() {
                 <Stack.Screen
                     name={RouteNames.DetailPage}
                     component={DetailPage}
+                />
+                <Stack.Screen
+                    name={RouteNames.SearchPage}
+                    component={SearchPage}
                 />
             </Stack.Navigator>
         </NavigationContainer>

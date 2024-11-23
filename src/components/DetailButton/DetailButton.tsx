@@ -45,17 +45,31 @@ export const DetailButton = ({
                 setSource(require('./../../assets/icons/play.png'));
                 break;
             case DetailButtonType.Like:
+                if (movieUserPref.isLiked) {
+                    setSource(require('./../../assets/icons/like_active.png'));
+                    break;
+                }
                 setSource(require('./../../assets/icons/like.png'));
                 break;
             case DetailButtonType.Dislike:
+                if (movieUserPref.isDisliked) {
+                    setSource(require('./../../assets/icons/like_active.png'));
+                    break;
+                }
                 setSource(require('./../../assets/icons/like.png'));
                 break;
             case DetailButtonType.Bookmark:
+                if (movieUserPref.isFavourite) {
+                    setSource(
+                        require('./../../assets/icons/bookmark_active.png')
+                    );
+                    break;
+                }
                 setSource(require('./../../assets/icons/bookmark.png'));
                 break;
         }
         setLabelWidth((250 * (text.length + 9)) / 30);
-    }, [icon]);
+    }, [icon, movieUserPref]);
     return (
         <>
             {focused && (
@@ -95,18 +109,6 @@ export const DetailButton = ({
                     style={[
                         style.button,
                         focused && { backgroundColor: AppColors.white },
-                        icon === DetailButtonType.Like &&
-                            movieUserPref?.isLiked && {
-                                backgroundColor: AppColors.orange20,
-                            },
-                        icon === DetailButtonType.Dislike &&
-                            movieUserPref?.isDisliked && {
-                                backgroundColor: AppColors.orange20,
-                            },
-                        icon === DetailButtonType.Bookmark &&
-                            movieUserPref?.isFavourite && {
-                                backgroundColor: AppColors.orange20,
-                            },
                     ]}
                 >
                     <Image
