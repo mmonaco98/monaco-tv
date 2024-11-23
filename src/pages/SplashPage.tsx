@@ -73,7 +73,7 @@ export const SplashPage = (): JSX.Element => {
                 setTimeout(() => {
                     navigation.reset({
                         index: 0,
-                        routes: [{ name: RouteNames.SearchPage }],
+                        routes: [{ name: RouteNames.HomePage }],
                     });
                 }, 1000);
             })
