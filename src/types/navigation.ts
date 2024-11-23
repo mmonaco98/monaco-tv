@@ -18,6 +18,7 @@ export type TRoutes = {
     [RouteNames.PlayerPage]: TRoutePlayerPageParams;
     [RouteNames.SettingsPage]: TRouteSettingsPageParams;
     [RouteNames.ListingPage]: TRouteListingPageParams;
+    [RouteNames.FavouritePage]: TRouteFavouritePageParams;
 };
 
 export interface TPageProps<RouteName extends string & keyof TRoutes> {
@@ -34,6 +35,8 @@ export interface TRouteSignInPageParams {}
 export interface TRoutePlayerPageParams {}
 export interface TRouteSettingsPageParams {}
 export interface TRouteListingPageParams {}
+export interface TRouteFavouritePageParams {}
+
 export type TDetailPageProps = TPageProps<RouteNames.DetailPage>;
 export type THomePageProps = TPageProps<RouteNames.HomePage>;
 export type TSearchPageProps = TPageProps<RouteNames.SearchPage>;
@@ -43,3 +46,4 @@ export type TSignInPageProps = TPageProps<RouteNames.SignInPage>;
 export type TPlayerPageProps = TPageProps<RouteNames.PlayerPage>;
 export type TSettingsPageProps = TPageProps<RouteNames.SettingsPage>;
 export type TListingPageProps = TPageProps<RouteNames.ListingPage>;
+export type TFavouritePageProps = TPageProps<RouteNames.FavouritePage>;

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { AppColors } from '../enums/colors';
 import { CarouselsContainer } from '../components/CarouselsContainer/CarouselsContainer';
-import { HomePreview } from '../components/HomePreview/HomePreview';
+import { HomePreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
 import { SearchContainer } from '../components/SearchContainer/SearchContainer';

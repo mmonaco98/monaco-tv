@@ -14,6 +14,7 @@ import { AppColors } from '../../enums/colors';
 import { TSection } from '../../types/section';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { useEffect, useRef, useState } from 'react';
+import { PreviewPage } from '../../types/preview';
 
 const style = StyleSheet.create({
     container: {
@@ -26,11 +27,13 @@ export const Carousel = ({
     onSectionFocus,
     activeIndex,
     carouselIndex,
+    page,
 }: {
     section: TSection;
     onSectionFocus?(): void;
     activeIndex: number;
     carouselIndex: number;
+    page: PreviewPage;
 }): JSX.Element => {
     const listRef = useRef<FlatList>(null);
     const [isCarouselVisible, setIsCarouselVisible] = useState<boolean>(true);
@@ -51,16 +54,20 @@ export const Carousel = ({
     return (
         <>
             <TVFocusGuideView style={[style.container]} trapFocusRight>
-                <Text
-                    style={{
-                        color: AppColors.white,
-                        marginLeft: hScale(150),
-                        marginBottom: vScale(15),
-                        fontSize: vScale(30),
-                    }}
-                >
-                    {isCarouselVisible && section.sectionTitle.toUpperCase()}
-                </Text>
+                {section.sectionTitle && (
+                    <Text
+                        style={{
+                            color: AppColors.white,
+                            marginLeft: hScale(150),
+                            marginBottom: vScale(15),
+                            fontSize: vScale(30),
+                        }}
+                    >
+                        {isCarouselVisible &&
+                            section.sectionTitle.toUpperCase()}
+                    </Text>
+                )}
+
                 <FlatList
                     ref={listRef}
                     horizontal
@@ -90,7 +97,8 @@ export const Carousel = ({
                                         item={item}
                                         onFocus={(): void => {
                                             onSectionFocus();
-                                            scrollTo(index);
+                                            if (page !== PreviewPage.FAVOURITE)
+                                                scrollTo(index);
                                         }}
                                         isCardVisible={isCarouselVisible}
                                     />

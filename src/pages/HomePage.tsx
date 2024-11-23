@@ -1,9 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 import { AppColors } from '../enums/colors';
 import { CarouselsContainer } from '../components/CarouselsContainer/CarouselsContainer';
-import { HomePreview } from '../components/HomePreview/HomePreview';
+import { StandardPreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
+import { PreviewPage } from '../types/preview';
 
 const style = StyleSheet.create({
     homePage: {
@@ -28,8 +29,8 @@ export const HomePage = (): JSX.Element => {
                 <View style={style.menuWrapper}>
                     <SideMenu />
                 </View>
-                <HomePreview />
-                <CarouselsContainer />
+                <StandardPreview />
+                <CarouselsContainer page={PreviewPage.HOMEPAGE} />
             </View>
         </>
     );

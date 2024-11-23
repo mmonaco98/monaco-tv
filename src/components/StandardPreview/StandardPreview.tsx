@@ -5,6 +5,7 @@ import { AppColors } from '../../enums/colors';
 import { RadialGradient } from '../Basics/RadialGradient';
 import { Label } from '../Label/Label';
 import { useEffect, useState } from 'react';
+import { PreviewPage } from '../../types/preview';
 
 const style = StyleSheet.create({
     container: {
@@ -44,7 +45,7 @@ const colorList = [
     { offset: '100%', color: AppColors.background, opacity: '1' },
 ];
 
-export const HomePreview = (): JSX.Element => {
+export const StandardPreview = (): JSX.Element => {
     const focusedItem = useAppStore((state) => state.focusedItem);
     const [imageURL, setImageURL] = useState<ImageProps>();
 

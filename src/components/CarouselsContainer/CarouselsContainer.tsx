@@ -2,8 +2,10 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import { Carousel } from '../Carousel/Carousel';
 import { HomeData } from '../../helpers/FakeData';
 import { useAppStore } from '../../stores/appStores';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { hScale, vScale } from '../../helpers/sizeHelper';
+import { PreviewPage } from '../../types/preview';
+import { TSection } from '../../types/section';
 
 const style = StyleSheet.create({
     container: {
@@ -13,10 +15,22 @@ const style = StyleSheet.create({
     },
 });
 
-export const CarouselsContainer = (): JSX.Element => {
-    const homepage = useAppStore((state) => state.homepage);
+export const CarouselsContainer = ({
+    page,
+}: {
+    page: PreviewPage;
+}): JSX.Element => {
     const listRef = useRef<FlatList>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    let pageData: TSection[];
+    switch (page) {
+        case PreviewPage.FAVOURITE:
+            pageData = useAppStore((state) => state.favourites);
+            break;
+        case PreviewPage.HOMEPAGE:
+        default:
+            pageData = useAppStore((state) => state.homepage);
+    }
 
     // scroll manager - keeps the focused item on the left side of the screen
     const scrollTo = (index: number): void => {
@@ -40,7 +54,7 @@ export const CarouselsContainer = (): JSX.Element => {
                         paddingTop: vScale(648),
                         paddingBottom: vScale(1080),
                     }}
-                    data={homepage}
+                    data={pageData}
                     renderItem={({ item, index }) => {
                         return (
                             <Carousel
@@ -50,6 +64,7 @@ export const CarouselsContainer = (): JSX.Element => {
                                 }}
                                 carouselIndex={index}
                                 activeIndex={activeIndex}
+                                page={page}
                             />
                         );
                     }}
