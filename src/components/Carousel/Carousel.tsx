@@ -13,7 +13,7 @@ import { TMovie } from '../../types/movie';
 import { AppColors } from '../../enums/colors';
 import { TSection } from '../../types/section';
 import { hScale, vScale } from '../../helpers/sizeHelper';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const style = StyleSheet.create({
     container: {
@@ -44,6 +44,10 @@ export const Carousel = ({
         });
     };
 
+    useEffect(() => {
+        setIsCarouselVisible(activeIndex <= carouselIndex);
+    }, [activeIndex]);
+
     return (
         <>
             <TVFocusGuideView style={[style.container]} trapFocusRight>
@@ -55,7 +59,7 @@ export const Carousel = ({
                         fontSize: vScale(30),
                     }}
                 >
-                    {section.sectionTitle.toUpperCase()}
+                    {isCarouselVisible && section.sectionTitle.toUpperCase()}
                 </Text>
                 <FlatList
                     ref={listRef}
@@ -78,6 +82,7 @@ export const Carousel = ({
                                             onSectionFocus();
                                             scrollTo(index);
                                         }}
+                                        isCardVisible={isCarouselVisible}
                                     />
                                 )}
                                 {section.type == CardTypes.VideoCard && (
@@ -87,6 +92,7 @@ export const Carousel = ({
                                             onSectionFocus();
                                             scrollTo(index);
                                         }}
+                                        isCardVisible={isCarouselVisible}
                                     />
                                 )}
                             </>

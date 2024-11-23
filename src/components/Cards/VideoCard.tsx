@@ -1,7 +1,7 @@
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Pressable, ImageProps } from 'react-native';
 import { hScale, vScale } from '../../helpers/sizeHelper';
 import { AppColors } from '../../enums/colors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TMovie } from '../../types/movie';
 import { useAppStore } from '../../stores/appStores';
 import { RouteNames } from '../../enums/navigation';
@@ -33,14 +33,23 @@ const style = StyleSheet.create({
 export const VideoCard = ({
     item,
     onFocus,
+    isCardVisible,
 }: {
     item: TMovie;
     onFocus?(): void;
+    isCardVisible: boolean;
 }): JSX.Element => {
     const [focused, setFocused] = useState<boolean>(false);
+    const [imageURL, setImageURL] = useState<ImageProps>();
     const updateFocusedItem = useAppStore((state) => state.updateFocusedItem);
     const navigation = useAppStore((state) => state.navigation);
-
+    useEffect(() => {
+        setImageURL(
+            item.movie_image_url
+                ? { uri: item.movie_image_url }
+                : require('./../../assets/images/placeholder.png')
+        );
+    }, []);
     return (
         <>
             <Pressable
@@ -62,16 +71,11 @@ export const VideoCard = ({
                 }}
             >
                 <View style={[style.cardWrapper, focused && style.focused]}>
-                    <View style={style.card}>
-                        <Image
-                            source={{
-                                uri:
-                                    item.movie_image_url ??
-                                    'https://picsum.photos/418/238',
-                            }}
-                            style={style.img}
-                        />
-                    </View>
+                    {isCardVisible && (
+                        <View style={style.card}>
+                            <Image source={imageURL} style={style.img} />
+                        </View>
+                    )}
                 </View>
             </Pressable>
         </>

@@ -328,7 +328,7 @@ export const SignInPage = (): JSX.Element => {
     const getHomepage = async (user: TUser) => {
         getHomepageByUserId(user.id)
             .then((response) => {
-                updateHomepage(response);
+                updateHomepage(response.slice(0, 10));
                 setTimeout(() => {
                     navigation.reset({
                         index: 0,

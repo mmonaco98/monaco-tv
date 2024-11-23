@@ -38,6 +38,7 @@ export const CarouselsContainer = (): JSX.Element => {
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{
                         paddingTop: vScale(648),
+                        paddingBottom: vScale(1080),
                     }}
                     data={homepage}
                     renderItem={({ item, index }) => {

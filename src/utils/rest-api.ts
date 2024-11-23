@@ -21,7 +21,6 @@ export const getMovieById = async (id: number): Promise<TMovie> => {
 };
 
 export const searchMoviebyTitle = async (title: string): Promise<TMovie[]> => {
-    console.log(title);
     return await fetch('http://' + API_URL + `/search/byTitle?title=${title}`, {
         method: 'GET',
         headers: {
@@ -31,7 +30,6 @@ export const searchMoviebyTitle = async (title: string): Promise<TMovie[]> => {
     })
         .then((response) => response.json())
         .then((json) => {
-            console.log(json);
             return json.data;
         })
         .catch(() => {});

@@ -67,14 +67,11 @@ export const SearchContainer = (): JSX.Element => {
     }, []);
 
     useEffect(() => {
-        /* if (searchText.length >= 3) { */
         searchMoviebyTitle(searchText)
             .then((resp) => {
-                console.log(resp[0]);
                 setMovieList(resp);
             })
             .catch((err) => console.log(err));
-        /* } */
     }, [searchText]);
 
     return (
