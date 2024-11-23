@@ -16,12 +16,11 @@ const style = StyleSheet.create({
         paddingBottom: vScale(1080),
         gap: vScale(20),
     },
-    gradient: {
-        position: 'absolute',
-        right: 0,
+    loaderWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
-        height: vScale(100),
-        zIndex: 5,
+        height: '100%',
     },
 });
 
@@ -45,7 +44,7 @@ export const SearchMovieGrid = ({
         setIsFetching(false);
     }, [movieList]);
 
-    // scroll manager - keeps the focused item on the left side of the screen
+    // scroll manager - keeps the focused item on the center of the screen
     const scrollTo = (index: number): void => {
         listRef.current?.scrollToIndex({
             animated: true,
@@ -54,40 +53,10 @@ export const SearchMovieGrid = ({
         });
     };
 
-    const gradientColors: TColorList[] = [
-        { opacity: '1', color: AppColors.background, offset: '80%' },
-        { opacity: '0', color: AppColors.background, offset: '0%' },
-    ];
-
     return (
         <>
-            <View style={[style.gradient, { top: 0 }]}>
-                <LinearGradient
-                    x1={'100%'}
-                    x2={'100%'}
-                    y1={'100%'}
-                    y2={'0%'}
-                    colorList={gradientColors}
-                />
-            </View>
-            <View style={[style.gradient, { bottom: 0 }]}>
-                <LinearGradient
-                    x1={'100%'}
-                    x2={'100%'}
-                    y1={'0%'}
-                    y2={'100%'}
-                    colorList={gradientColors}
-                />
-            </View>
             {isFetching ? (
-                <View
-                    style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '100%',
-                        height: '100%',
-                    }}
-                >
+                <View style={style.loaderWrapper}>
                     <Flow
                         size={hScale(100)}
                         colors={['#ff5726', '#ff6c27', '#ff8325']}
