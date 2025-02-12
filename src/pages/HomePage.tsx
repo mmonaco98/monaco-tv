@@ -1,9 +1,11 @@
 import { StyleSheet, View } from 'react-native';
 import { AppColors } from '../enums/colors';
 import { CarouselsContainer } from '../components/CarouselsContainer/CarouselsContainer';
-import { HomePreview } from '../components/HomePreview/HomePreview';
+import { StandardPreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
+import { PreviewPage } from '../types/preview';
+import React, { useRef } from 'react';
 
 const style = StyleSheet.create({
     homePage: {
@@ -15,21 +17,27 @@ const style = StyleSheet.create({
         position: 'absolute',
         left: 0,
         bottom: 0,
-        width: hScale(200),
         height: '100%',
         zIndex: 2,
     },
 });
 
 export const HomePage = (): JSX.Element => {
+    const menuRef = useRef(null);
+    const carouselRef = useRef(null);
+
     return (
         <>
             <View style={style.homePage}>
                 <View style={style.menuWrapper}>
-                    <SideMenu />
+                    <SideMenu menuRef={menuRef} exitRef={carouselRef} />
                 </View>
-                <HomePreview />
-                <CarouselsContainer />
+                <StandardPreview />
+                <CarouselsContainer
+                    page={PreviewPage.HOMEPAGE}
+                    menuRef={menuRef}
+                    carouselRef={carouselRef}
+                />
             </View>
         </>
     );

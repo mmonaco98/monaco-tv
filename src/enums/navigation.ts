@@ -8,4 +8,5 @@ export const enum RouteNames {
     LoginPage = 'LoginPage',
     SettingsPage = 'SettingsPage',
     SignInPage = 'SignInPage',
+    FavouritePage = 'FavouritePage',
 }

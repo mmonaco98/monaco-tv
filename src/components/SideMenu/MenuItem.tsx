@@ -11,6 +11,8 @@ import { AppColors } from '../../enums/colors';
 import { MenuVoice } from '../../types/menu';
 import { useEffect, useState } from 'react';
 import { MenuItemType } from '../../enums/menu';
+import { useAppStore } from '../../stores/appStores';
+import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
     container: {
@@ -18,22 +20,35 @@ const style = StyleSheet.create({
         height: vScale(70),
         borderRadius: hScale(100),
         //backgroundColor: AppColors.orange,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
         gap: hScale(10),
-        //paddingLeft: hScale(10),
+        paddingLeft: hScale(10),
     },
     icon: {
         tintColor: AppColors.white,
         width: hScale(50),
         height: vScale(50),
     },
+    text: {
+        color: AppColors.white,
+        fontSize: vScale(25),
+    },
 });
 
-export const MenuItem = ({ item }: { item: MenuVoice }): JSX.Element => {
+export const MenuItem = ({
+    item,
+    onFocus,
+    isMenuOpen,
+}: {
+    item: MenuVoice;
+    onFocus: () => void;
+    isMenuOpen: boolean;
+}): JSX.Element => {
     const [source, setSource] = useState<ImageProps>();
     const [focused, setFocused] = useState<boolean>(false);
+    const navigation = useAppStore((state) => state.navigation);
 
     useEffect(() => {
         switch (item.icon) {
@@ -51,33 +66,53 @@ export const MenuItem = ({ item }: { item: MenuVoice }): JSX.Element => {
                 break;
         }
     });
+
+    const handleOnPressMenuItem = () => {
+        if (item.route === RouteNames.HomePage) {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: RouteNames.HomePage }],
+            });
+        } else navigation.navigate(item.route);
+    };
     return (
-        <>
-            <Pressable
-                onFocus={() => {
-                    setFocused(true);
-                }}
-                onBlur={() => {
-                    setFocused(false);
-                }}
-                hasTVPreferredFocus={item.icon === MenuItemType.Home}
+        <Pressable
+            onFocus={() => {
+                onFocus();
+                setFocused(true);
+            }}
+            onBlur={() => {
+                setFocused(false);
+            }}
+            onPress={() => {
+                handleOnPressMenuItem();
+            }}
+        >
+            <View
+                style={[
+                    style.container,
+                    focused && { backgroundColor: AppColors.white },
+                    isMenuOpen && { width: hScale(230) },
+                ]}
             >
-                <View
+                <Image
                     style={[
-                        style.container,
-                        focused && { backgroundColor: AppColors.white },
+                        style.icon,
+                        focused && { tintColor: AppColors.background },
                     ]}
-                >
-                    <Image
+                    source={source}
+                />
+                {isMenuOpen && (
+                    <Text
                         style={[
-                            style.icon,
-                            focused && { tintColor: AppColors.background },
+                            style.text,
+                            focused && { color: AppColors.background },
                         ]}
-                        source={source}
-                    />
-                </View>
-                {/* <View>{focused && <Text>{item.buttonText}</Text>}</View> */}
-            </Pressable>
-        </>
+                    >
+                        {item.buttonText}
+                    </Text>
+                )}
+            </View>
+        </Pressable>
     );
 };

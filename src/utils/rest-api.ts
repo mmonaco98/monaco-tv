@@ -97,6 +97,26 @@ export const removeFavouriteMovie = async (
         });
 };
 
+export const getFavouriteMovie = async (
+    user_id: number
+): Promise<TSection[]> => {
+    return await fetch(
+        'http://' + API_URL + `/favourite/getFavourite?user_id=${user_id}`,
+        {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        }
+    )
+        .then((response) => response.json())
+        .then((json) => {
+            return json.data;
+        })
+        .catch(() => {});
+};
+
 // LIKED
 
 export const isLikedMovie = async (params: TUserMovie): Promise<boolean> => {

@@ -37,7 +37,9 @@ export const SearchMovieGrid = ({
 
     useEffect(() => {
         setIsFetching(true);
-        scrollTo(0);
+        if (!!movieList) {
+            scrollTo(0);
+        }
     }, [searchText]);
 
     useEffect(() => {

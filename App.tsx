@@ -8,6 +8,7 @@ import { LoginPage } from './src/pages/LoginPage';
 import { SignInPage } from './src/pages/SignInPage';
 import { DetailPage } from './src/pages/DetailPage';
 import { SearchPage } from './src/pages/SearchPage';
+import { FavouritePage } from './src/pages/FavouritePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,10 @@ export default function App() {
                 <Stack.Screen
                     name={RouteNames.SearchPage}
                     component={SearchPage}
+                />
+                <Stack.Screen
+                    name={RouteNames.FavouritePage}
+                    component={FavouritePage}
                 />
             </Stack.Navigator>
         </NavigationContainer>
