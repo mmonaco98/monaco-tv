@@ -17,7 +17,6 @@ const style = StyleSheet.create({
         position: 'absolute',
         left: 0,
         bottom: 0,
-        width: hScale(200),
         height: '100%',
         zIndex: 2,
     },
@@ -25,18 +24,19 @@ const style = StyleSheet.create({
 
 export const HomePage = (): JSX.Element => {
     const menuRef = useRef(null);
+    const carouselRef = useRef(null);
 
     return (
         <>
             <View style={style.homePage}>
                 <View style={style.menuWrapper}>
-                    <SideMenu menuRef={menuRef} />
+                    <SideMenu menuRef={menuRef} exitRef={carouselRef} />
                 </View>
                 <StandardPreview />
-
                 <CarouselsContainer
                     page={PreviewPage.HOMEPAGE}
                     menuRef={menuRef}
+                    carouselRef={carouselRef}
                 />
             </View>
         </>

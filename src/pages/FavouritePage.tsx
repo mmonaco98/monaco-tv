@@ -20,7 +20,7 @@ const style = StyleSheet.create({
         position: 'absolute',
         left: 0,
         bottom: 0,
-        width: hScale(200),
+        //width: hScale(200),
         height: '100%',
         zIndex: 2,
     },
@@ -38,6 +38,7 @@ export const FavouritePage = (): JSX.Element => {
     const user = useAppStore((state) => state.userInfo);
     const updateFavourites = useAppStore((state) => state.updateFavourites);
     const menuRef = useRef(null);
+    const carouselRef = useRef(null);
 
     useEffect(() => {
         getFavouriteMovie(user.id)
@@ -57,12 +58,13 @@ export const FavouritePage = (): JSX.Element => {
     ) : (
         <View style={style.homePage}>
             <View style={style.menuWrapper}>
-                <SideMenu menuRef={menuRef} />
+                <SideMenu menuRef={menuRef} exitRef={carouselRef} />
             </View>
             <StandardPreview />
             <CarouselsContainer
                 menuRef={menuRef}
                 page={PreviewPage.FAVOURITE}
+                carouselRef={carouselRef}
             />
         </View>
     );

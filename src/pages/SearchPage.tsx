@@ -1,10 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { AppColors } from '../enums/colors';
-import { CarouselsContainer } from '../components/CarouselsContainer/CarouselsContainer';
-import { HomePreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
 import { SearchContainer } from '../components/SearchContainer/SearchContainer';
+import { useRef } from 'react';
 
 const style = StyleSheet.create({
     searchPage: {
@@ -16,7 +15,7 @@ const style = StyleSheet.create({
         position: 'absolute',
         left: 0,
         bottom: 0,
-        width: hScale(200),
+        //width: hScale(200),
         height: '100%',
         zIndex: 2,
     },
@@ -26,13 +25,15 @@ const style = StyleSheet.create({
 });
 
 export const SearchPage = (): JSX.Element => {
+    const menuRef = useRef(null);
+    const carouselRef = useRef(null);
     return (
         <>
             <View style={style.searchPage}>
                 <View style={style.menuWrapper}>
-                    <SideMenu />
+                    <SideMenu menuRef={menuRef} exitRef={carouselRef} />
                 </View>
-                <View style={style.searchContainer}>
+                <View style={style.searchContainer} ref={carouselRef}>
                     <SearchContainer />
                 </View>
             </View>

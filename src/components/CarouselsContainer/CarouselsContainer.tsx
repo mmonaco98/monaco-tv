@@ -1,6 +1,5 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import { Carousel } from '../Carousel/Carousel';
-import { HomeData } from '../../helpers/FakeData';
 import { useAppStore } from '../../stores/appStores';
 import { useEffect, useRef, useState } from 'react';
 import { hScale, vScale } from '../../helpers/sizeHelper';
@@ -18,9 +17,11 @@ const style = StyleSheet.create({
 export const CarouselsContainer = ({
     page,
     menuRef,
+    carouselRef,
 }: {
     page: PreviewPage;
     menuRef: React.RefObject<any>;
+    carouselRef: React.RefObject<any>;
 }): JSX.Element => {
     const listRef = useRef<FlatList>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -45,7 +46,7 @@ export const CarouselsContainer = ({
     };
 
     return (
-        <View style={style.container}>
+        <View style={style.container} ref={carouselRef}>
             <FlatList
                 ref={listRef}
                 scrollEnabled={false}

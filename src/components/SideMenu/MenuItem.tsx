@@ -20,25 +20,31 @@ const style = StyleSheet.create({
         height: vScale(70),
         borderRadius: hScale(100),
         //backgroundColor: AppColors.orange,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
         gap: hScale(10),
-        //paddingLeft: hScale(10),
+        paddingLeft: hScale(10),
     },
     icon: {
         tintColor: AppColors.white,
         width: hScale(50),
         height: vScale(50),
     },
+    text: {
+        color: AppColors.white,
+        fontSize: vScale(25),
+    },
 });
 
 export const MenuItem = ({
     item,
-    elemRef,
+    onFocus,
+    isMenuOpen,
 }: {
     item: MenuVoice;
-    elemRef?: React.RefObject<any>;
+    onFocus: () => void;
+    isMenuOpen: boolean;
 }): JSX.Element => {
     const [source, setSource] = useState<ImageProps>();
     const [focused, setFocused] = useState<boolean>(false);
@@ -72,6 +78,7 @@ export const MenuItem = ({
     return (
         <Pressable
             onFocus={() => {
+                onFocus();
                 setFocused(true);
             }}
             onBlur={() => {
@@ -80,12 +87,12 @@ export const MenuItem = ({
             onPress={() => {
                 handleOnPressMenuItem();
             }}
-            ref={elemRef}
         >
             <View
                 style={[
                     style.container,
                     focused && { backgroundColor: AppColors.white },
+                    isMenuOpen && { width: hScale(230) },
                 ]}
             >
                 <Image
@@ -95,8 +102,17 @@ export const MenuItem = ({
                     ]}
                     source={source}
                 />
+                {isMenuOpen && (
+                    <Text
+                        style={[
+                            style.text,
+                            focused && { color: AppColors.background },
+                        ]}
+                    >
+                        {item.buttonText}
+                    </Text>
+                )}
             </View>
-            {/* <View>{focused && <Text>{item.buttonText}</Text>}</View> */}
         </Pressable>
     );
 };
