@@ -33,6 +33,7 @@ export const HomePage = (): JSX.Element => {
                     <SideMenu menuRef={menuRef} />
                 </View>
                 <StandardPreview />
+
                 <CarouselsContainer
                     page={PreviewPage.HOMEPAGE}
                     menuRef={menuRef}

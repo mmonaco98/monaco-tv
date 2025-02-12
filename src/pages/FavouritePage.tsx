@@ -4,7 +4,7 @@ import { StandardPreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { AppColors } from '../enums/colors';
 import { hScale } from '../helpers/sizeHelper';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getFavouriteMovie } from '../utils/rest-api';
 import { Flow } from '../components/Loaders/Loaders';
 import { useAppStore } from '../stores/appStores';
@@ -37,6 +37,7 @@ export const FavouritePage = (): JSX.Element => {
     const [isFetching, setIsFetching] = useState<boolean>(true);
     const user = useAppStore((state) => state.userInfo);
     const updateFavourites = useAppStore((state) => state.updateFavourites);
+    const menuRef = useRef(null);
 
     useEffect(() => {
         getFavouriteMovie(user.id)
@@ -46,22 +47,23 @@ export const FavouritePage = (): JSX.Element => {
             })
             .catch((err) => {});
     }, []);
-    return (
-        <>
-            {isFetching ? (
-                <View style={style.loaderWrapper}>
-                    <Flow
-                        size={hScale(100)}
-                        colors={['#ff5726', '#ff6c27', '#ff8325']}
-                    />
-                </View>
-            ) : (
-                <View style={style.homePage}>
-                    <View style={style.menuWrapper}>{/* <SideMenu /> */}</View>
-                    <StandardPreview />
-                    <CarouselsContainer page={PreviewPage.FAVOURITE} />
-                </View>
-            )}
-        </>
+    return isFetching ? (
+        <View style={style.loaderWrapper}>
+            <Flow
+                size={hScale(100)}
+                colors={['#ff5726', '#ff6c27', '#ff8325']}
+            />
+        </View>
+    ) : (
+        <View style={style.homePage}>
+            <View style={style.menuWrapper}>
+                <SideMenu menuRef={menuRef} />
+            </View>
+            <StandardPreview />
+            <CarouselsContainer
+                menuRef={menuRef}
+                page={PreviewPage.FAVOURITE}
+            />
+        </View>
     );
 };

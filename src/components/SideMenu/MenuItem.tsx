@@ -11,6 +11,8 @@ import { AppColors } from '../../enums/colors';
 import { MenuVoice } from '../../types/menu';
 import { useEffect, useState } from 'react';
 import { MenuItemType } from '../../enums/menu';
+import { useAppStore } from '../../stores/appStores';
+import { RouteNames } from '../../enums/navigation';
 
 const style = StyleSheet.create({
     container: {
@@ -40,6 +42,7 @@ export const MenuItem = ({
 }): JSX.Element => {
     const [source, setSource] = useState<ImageProps>();
     const [focused, setFocused] = useState<boolean>(false);
+    const navigation = useAppStore((state) => state.navigation);
 
     useEffect(() => {
         switch (item.icon) {
@@ -57,6 +60,15 @@ export const MenuItem = ({
                 break;
         }
     });
+
+    const handleOnPressMenuItem = () => {
+        if (item.route === RouteNames.HomePage) {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: RouteNames.HomePage }],
+            });
+        } else navigation.navigate(item.route);
+    };
     return (
         <Pressable
             onFocus={() => {
@@ -65,7 +77,9 @@ export const MenuItem = ({
             onBlur={() => {
                 setFocused(false);
             }}
-            hasTVPreferredFocus={item.icon === MenuItemType.Home}
+            onPress={() => {
+                handleOnPressMenuItem();
+            }}
             ref={elemRef}
         >
             <View
