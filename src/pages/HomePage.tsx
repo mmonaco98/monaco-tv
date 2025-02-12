@@ -5,6 +5,7 @@ import { StandardPreview } from '../components/StandardPreview/StandardPreview';
 import { SideMenu } from '../components/SideMenu/SideMenu';
 import { hScale } from '../helpers/sizeHelper';
 import { PreviewPage } from '../types/preview';
+import React, { useRef } from 'react';
 
 const style = StyleSheet.create({
     homePage: {
@@ -23,14 +24,19 @@ const style = StyleSheet.create({
 });
 
 export const HomePage = (): JSX.Element => {
+    const menuRef = useRef(null);
+
     return (
         <>
             <View style={style.homePage}>
                 <View style={style.menuWrapper}>
-                    <SideMenu />
+                    <SideMenu menuRef={menuRef} />
                 </View>
                 <StandardPreview />
-                <CarouselsContainer page={PreviewPage.HOMEPAGE} />
+                <CarouselsContainer
+                    page={PreviewPage.HOMEPAGE}
+                    menuRef={menuRef}
+                />
             </View>
         </>
     );

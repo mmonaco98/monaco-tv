@@ -17,8 +17,10 @@ const style = StyleSheet.create({
 
 export const CarouselsContainer = ({
     page,
+    menuRef,
 }: {
     page: PreviewPage;
+    menuRef: React.RefObject<any>;
 }): JSX.Element => {
     const listRef = useRef<FlatList>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -43,33 +45,32 @@ export const CarouselsContainer = ({
     };
 
     return (
-        <>
-            <View style={style.container}>
-                <FlatList
-                    ref={listRef}
-                    scrollEnabled={false}
-                    showsHorizontalScrollIndicator={false}
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{
-                        paddingTop: vScale(648),
-                        paddingBottom: vScale(1080),
-                    }}
-                    data={pageData}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <Carousel
-                                section={item}
-                                onSectionFocus={(): void => {
-                                    scrollTo(index);
-                                }}
-                                carouselIndex={index}
-                                activeIndex={activeIndex}
-                                page={page}
-                            />
-                        );
-                    }}
-                ></FlatList>
-            </View>
-        </>
+        <View style={style.container}>
+            <FlatList
+                ref={listRef}
+                scrollEnabled={false}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingTop: vScale(648),
+                    paddingBottom: vScale(1080),
+                }}
+                data={pageData}
+                renderItem={({ item, index }) => {
+                    return (
+                        <Carousel
+                            section={item}
+                            onSectionFocus={(): void => {
+                                scrollTo(index);
+                            }}
+                            carouselIndex={index}
+                            activeIndex={activeIndex}
+                            page={page}
+                            menuRef={menuRef}
+                        />
+                    );
+                }}
+            ></FlatList>
+        </View>
     );
 };

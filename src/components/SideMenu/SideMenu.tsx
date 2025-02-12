@@ -7,6 +7,7 @@ import { MenuItem } from './MenuItem';
 import { RouteNames } from '../../enums/navigation';
 import { MenuVoice } from '../../types/menu';
 import { MenuItemType } from '../../enums/menu';
+import React from 'react';
 
 const style = StyleSheet.create({
     sideMenu: {
@@ -64,40 +65,52 @@ const gradientColors: TColorList[] = [
     { opacity: '.4', color: AppColors.background, offset: '4%' },
     { opacity: '0', color: AppColors.background, offset: '2%' },
 ];
-export const SideMenu = (): JSX.Element => {
+export const SideMenu = ({
+    menuRef,
+}: {
+    menuRef: React.RefObject<any>;
+}): JSX.Element => {
     return (
-        <>
-            <View style={style.sideMenu}>
-                <LinearGradient
-                    x1={'100%'}
-                    x2={'0%'}
-                    y1={'100%'}
-                    y2={'100%'}
-                    colorList={gradientColors}
-                >
-                    <View style={style.menuContainer}>
-                        <View style={style.topBottomContainer}></View>
-                        <View style={style.listContainer}>
-                            {menu.map((elem, index) => {
+        <View style={style.sideMenu}>
+            <LinearGradient
+                x1={'100%'}
+                x2={'0%'}
+                y1={'100%'}
+                y2={'100%'}
+                colorList={gradientColors}
+            >
+                <View style={style.menuContainer}>
+                    <View style={style.topBottomContainer}></View>
+                    <View style={style.listContainer}>
+                        {menu.map((elem, index) => {
+                            if (index === 0) {
                                 return (
                                     <View key={'elem' + index}>
-                                        <MenuItem item={elem} />
+                                        <MenuItem
+                                            item={elem}
+                                            elemRef={menuRef}
+                                        />
                                     </View>
                                 );
-                            })}
-                        </View>
-                        <View style={style.topBottomContainer}>
-                            <Image
-                                style={{
-                                    width: hScale(70),
-                                    height: vScale(70),
-                                }}
-                                source={require('./../../assets/images/logo.png')}
-                            />
-                        </View>
+                            }
+                            return (
+                                <View key={'elem' + index}>
+                                    <MenuItem item={elem} />
+                                </View>
+                            );
+                        })}
                     </View>
-                </LinearGradient>
-            </View>
-        </>
+                    <View style={style.topBottomContainer}>
+                        <Image
+                            style={{
+                                width: hScale(70),
+                                height: vScale(70),
+                            }}
+                            source={require('./../../assets/images/logo.png')}
+                        />
+                    </View>
+                </View>
+            </LinearGradient>
+        </View>
     );
 };

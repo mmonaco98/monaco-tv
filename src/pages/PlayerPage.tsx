@@ -195,7 +195,7 @@ export const PlayerPage = (): JSX.Element => {
                                     state.focused && style.buttonFocused,
                                 ];
                             }}
-                            onPress={() => player.seekBy(-15)}
+                            onPress={() => player.seekBy(-10)}
                             onFocus={() => setButtonFocused(PlayerButtons.BACK)}
                         >
                             <Image
