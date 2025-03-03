@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { MenuItemType } from '../../enums/menu';
 import { useAppStore } from '../../stores/appStores';
 import { RouteNames } from '../../enums/navigation';
+import { ACCESSIBLE, default as localStorage } from 'rn-secure-storage';
 
 const style = StyleSheet.create({
     container: {
@@ -68,7 +69,13 @@ export const MenuItem = ({
     });
 
     const handleOnPressMenuItem = () => {
-        if (item.route === RouteNames.HomePage) {
+        if (item.route === RouteNames.SplashPage) {
+            localStorage.removeItem('userInfo');
+            navigation.reset({
+                index: 0,
+                routes: [{ name: RouteNames.SplashPage }],
+            });
+        } else if (item.route === RouteNames.HomePage) {
             navigation.reset({
                 index: 0,
                 routes: [{ name: RouteNames.HomePage }],

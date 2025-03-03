@@ -69,8 +69,8 @@ const menu: MenuVoice[] = [
     },
 
     {
-        buttonText: 'Impostazioni',
-        route: RouteNames.SettingsPage,
+        buttonText: 'Logout',
+        route: RouteNames.SplashPage,
         icon: MenuItemType.Settings,
     },
 ];
